@@ -1,0 +1,5 @@
+Credentials cache: API:493C0AB2-8CB4-43D1-BFBE-74E0B04BF8AF
+        Principal: ibae@42SEOUL.KR
+
+  Issued                Expires             Flags    Principal
+Oct  7 12:11:22 2021  Oct  7 22:11:19 2021  FPIA   krbtgt/42SEOUL.KR@42SEOUL.KR
