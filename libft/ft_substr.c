@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibae <ibae@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 23:56:39 by ibae              #+#    #+#             */
-/*   Updated: 2022/01/14 23:56:45 by ibae             ###   ########.fr       */
+/*   Created: 2022/01/17 18:35:44 by ibae              #+#    #+#             */
+/*   Updated: 2022/01/17 18:35:47 by ibae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
+	char	*s2;
+	size_t	s_len;
+	size_t	end;
 
-	if (dst == NULL && src == NULL)
+	if (s == NULL)
 		return (0);
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dst);
+	s_len = ft_strlen(s);
+	end = 0;
+	if (start < s_len)
+		end = s_len - start;
+	if (end > len)
+		end = len;
+	s2 = (char *)malloc(sizeof(char) * (end + 1));
+	if (s2 == NULL)
+		return (0);
+	ft_strlcpy(s2, s + start, end + 1);
+	return (s2);
 }
