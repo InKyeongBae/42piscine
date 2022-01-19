@@ -1,4 +1,6 @@
-NAME	=   libft.a
+NAME = libft.a
+CFLAGS = -Wall -Wextra -Werror -I.
+CC = gcc
 SRCS	=	ft_atoi.c \
 			ft_bzero.c \
 			ft_calloc.c \
@@ -33,7 +35,7 @@ SRCS	=	ft_atoi.c \
 			ft_substr.c \
 			ft_tolower.c \
 			ft_toupper.c 
-SRCS_BONUS	=   ft_lstadd_back.c \
+SRCS_B	=	ft_lstadd_back.c \
 			ft_lstadd_front.c \
 			ft_lstclear.c \
 			ft_lstdelone.c \
@@ -42,31 +44,30 @@ SRCS_BONUS	=   ft_lstadd_back.c \
 			ft_lstmap.c \
 			ft_lstnew.c \
 			ft_lstsize.c
-OBJS	= $(SRCS:.c=.o)
-OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
-RM		= rm -f
-LIBC	= ar -rcs
-CC		= gcc
-FLAGS	= -Wall -Wextra -Werror
-INCS	= .
 
-.c.o :
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I${INCS}
+OBJECTS = $(SRCS:%.c=%.o)
 
-$(NAME): ${OBJS}
-	${LIBC} $(NAME) $(OBJS)
+OBJECTS_B = $(SRCS_B:%.c=%.o)
 
-all: $(NAME)
+ifdef WITH_BONUS
+	OBJ_FILES = $(OBJECTS) $(OBJECTS_B)
+else
+	OBJ_FILES = $(OBJECTS)
+endif
 
-bonus: $(NAME) $(OBJS_BONUS)
-	${LIBC} $(NAME) $(OBJS_BONUS)
+all : $(NAME)
 
-fclean: clean
-	$(RM) $(NAME) $(bonus)
+$(NAME) : $(OBJ_FILES)
+		ar rcs $(NAME) $(OBJECTS)
 
-clean:
-	$(RM) $(OBJS) $(OBJS_BONUS)
+bonus : 
+	@make WITH_BONUS=1 all
+clean : 
+	rm -f $(OBJECTS) $(OBJECTS_B)
 
-re: fclean all
+fclean : clean
+	rm -f $(NAME)
 
-.PHONY: all bonus clean fclean re .c.o
+re : fclean all
+
+.PHONY: all bonus clean fclean re
