@@ -60,13 +60,13 @@ all: $(NAME)
 
 bonus: $(NAME) $(OBJS_BONUS)
 	${LIBC} $(NAME) $(OBJS_BONUS)
-    
+
 fclean: clean
 	$(RM) $(NAME) $(bonus)
 
 clean:
-	$(RM) -f $(OBJS) $(OBJS_BONUS)
-    
+	$(RM) $(OBJS) $(OBJS_BONUS)
+
 re: fclean all
 
 .PHONY: all bonus clean fclean re .c.o
