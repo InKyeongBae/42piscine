@@ -6,7 +6,7 @@
 /*   By: ibae <ibae@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:41:49 by ibae              #+#    #+#             */
-/*   Updated: 2022/01/18 16:41:52 by ibae             ###   ########.fr       */
+/*   Updated: 2022/01/19 12:43:23 by ibae             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	free_ptr(char **s2)
 	free(s2);
 }
 
-char	**ft_split_words(char const *s, char c, char **s2, int words_num)
+int	ft_split_words(char const *s, char c, char **s2, int words_num)
 {
 	int	i;
 	int	word;
@@ -87,7 +87,7 @@ char	**ft_split_words(char const *s, char c, char **s2, int words_num)
 		word++;
 	}
 	s2[word] = 0;
-	return (s2);
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
@@ -101,7 +101,7 @@ char	**ft_split(char const *s, char c)
 	s2 = (char **)malloc(sizeof(char *) * (words_num + 1));
 	if (s2 == NULL)
 		return (0);
-	if (ft_split_words == 0)
+	if (!ft_split_words(s, c, s2, words_num))
 	{
 		free_ptr(s2);
 		return (0);
