@@ -48,12 +48,12 @@ char	*ft_putword(char *word, char const *s, int i, int word_len)
 	return (word);
 }
 
-void	free_ptr(char **s2, int word)
+void	free_ptr(char **s2)
 {
 	int	i;
 
 	i = 0;
-	while (i < word)
+	while (s2[i] == 0)
 	{
 		free(s2[i]);
 		i++;
@@ -80,11 +80,8 @@ char	**ft_split_words(char const *s, char c, char **s2, int words_num)
 			word_len++;
 		}
 		s2[word] = (char *)malloc(sizeof(char) * (word_len + 1));
-		if (s2 == NULL)
-		{
-			free_ptr(s2, word);
+		if (s2[word] == NULL)
 			return (0);
-		}
 		ft_putword(s2[word], s, i, word_len);
 		word_len = 0;
 		word++;
@@ -104,6 +101,10 @@ char	**ft_split(char const *s, char c)
 	s2 = (char **)malloc(sizeof(char *) * (words_num + 1));
 	if (s2 == NULL)
 		return (0);
-	ft_split_words(s, c, s2, words_num);
+	if (ft_split_words == 0)
+	{
+		free_ptr(s2);
+		return (0);
+	}
 	return (s2);
 }
