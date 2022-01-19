@@ -57,6 +57,9 @@ endif
 
 all : $(NAME)
 
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 $(NAME) : $(OBJ_FILES)
 		ar rcs $(NAME) $(OBJECTS)
 
