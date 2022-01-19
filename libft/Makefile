@@ -61,7 +61,7 @@ all : $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJ_FILES)
-		ar rcs $(NAME) $(OBJECTS)
+		ar rcs $(NAME) $(OBJ_FILES)
 
 bonus : 
 	@make WITH_BONUS=1 all
