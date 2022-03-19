@@ -95,7 +95,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*save;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (0);
 	save = ft_read_and_save(fd, save);
 	if (!save)
