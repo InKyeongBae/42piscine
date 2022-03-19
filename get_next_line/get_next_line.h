@@ -22,8 +22,8 @@ char	*ft_strjoin(char *s1, char *s2);
 
 char	*get_next_line(int fd);
 
-char	*ft_get_line(char *save);
-char	*ft_save(char *save);
-char	*ft_read_and_save(int fd, char *save);
+char	*ft_get_line(char *backup);
+char	*ft_backup(char *backup);
+char	*ft_read_and_backup(int fd, char *backup);
 
 #endif

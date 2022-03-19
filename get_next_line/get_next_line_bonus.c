@@ -12,61 +12,61 @@
 
 #include "get_next_line_bonus.h"
 
-char	*ft_get_line(char *save)
+char	*ft_get_line(char *backup)
 {
 	int		i;
 	char	*s;
 
 	i = 0;
-	if (!save[i])
+	if (!backup[i])
 		return (NULL);
-	while (save[i] && save[i] != '\n')
+	while (backup[i] && backup[i] != '\n')
 		i++;
 	s = (char *)malloc(sizeof(char) * (i + 2));
 	if (!s)
 		return (NULL);
 	i = 0;
-	while (save[i] && save[i] != '\n')
+	while (backup[i] && backup[i] != '\n')
 	{
-		s[i] = save[i];
+		s[i] = backup[i];
 		i++;
 	}
-	if (save[i] == '\n')
+	if (backup[i] == '\n')
 	{
-		s[i] = save[i];
+		s[i] = backup[i];
 		i++;
 	}
 	s[i] = '\0';
 	return (s);
 }
 
-char	*ft_save(char *save)
+char	*ft_backup(char *backup)
 {
 	int		i;
 	int		c;
 	char	*s;
 
 	i = 0;
-	while (save[i] && save[i] != '\n')
+	while (backup[i] && backup[i] != '\n')
 		i++;
-	if (!save[i])
+	if (!backup[i])
 	{
-		free(save);
+		free(backup);
 		return (NULL);
 	}
-	s = (char *)malloc(sizeof(char) * (ft_strlen(save) - i + 1));
+	s = (char *)malloc(sizeof(char) * (ft_strlen(backup) - i + 1));
 	if (!s)
 		return (NULL);
 	i++;
 	c = 0;
-	while (save[i])
-		s[c++] = save[i++];
+	while (backup[i])
+		s[c++] = backup[i++];
 	s[c] = '\0';
-	free(save);
+	free(backup);
 	return (s);
 }
 
-char	*ft_read_and_save(int fd, char *save)
+char	*ft_read_and_backup(int fd, char *backup)
 {
 	char	*buff;
 	int		read_bytes;
@@ -75,7 +75,7 @@ char	*ft_read_and_save(int fd, char *save)
 	if (!buff)
 		return (NULL);
 	read_bytes = 1;
-	while (!ft_strchr(save, '\n') && read_bytes != 0)
+	while (!ft_strchr(backup, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 		if (read_bytes == -1)
@@ -84,23 +84,23 @@ char	*ft_read_and_save(int fd, char *save)
 			return (NULL);
 		}
 		buff[read_bytes] = '\0';
-		save = ft_strjoin(save, buff);
+		backup = ft_strjoin(backup, buff);
 	}
 	free(buff);
-	return (save);
+	return (backup);
 }
 
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*save[257];
+	static char	*backup[257];
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)
+	if (fd < 0 || BUFFER_SIZE < 1 || fd > 256)
 		return (0);
-	save[fd] = ft_read_and_save(fd, save[fd]);
-	if (!save[fd])
+	backup[fd] = ft_read_and_backup(fd, backup[fd]);
+	if (!backup[fd])
 		return (NULL);
-	line = ft_get_line(save[fd]);
-	save[fd] = ft_save(save[fd]);
+	line = ft_get_line(backup[fd]);
+	backup[fd] = ft_backup(backup[fd]);
 	return (line);
 }
