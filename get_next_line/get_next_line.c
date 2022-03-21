@@ -20,13 +20,13 @@ char	*ft_get_line(char *backup)
 	i = 0;
 	if (!backup[i])
 		return (NULL);
-	while (backup[i] && backup[i] != '\n')
+	while (backup[i] != '\0' && backup[i] != '\n')
 		i++;
 	s = (char *)malloc(sizeof(char) * (i + 2));
 	if (!s)
 		return (NULL);
 	i = 0;
-	while (backup[i] && backup[i] != '\n')
+	while (backup[i] != '\0' && backup[i] != '\n')
 	{
 		s[i] = backup[i];
 		i++;
@@ -47,7 +47,7 @@ char	*ft_backup(char *backup)
 	char	*s;
 
 	i = 0;
-	while (backup[i] && backup[i] != '\n')
+	while (backup[i] != '\0' && backup[i] != '\n')
 		i++;
 	if (!backup[i])
 	{
