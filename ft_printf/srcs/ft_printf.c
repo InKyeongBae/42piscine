@@ -26,17 +26,17 @@ static t_print	*start(void)
 void	printcheck(const char character, t_print *arg_count)
 {
 	if (character == 'c')
-		ifcharacter(arg_count);
+		ischaracter(arg_count);
 	else if (character == 's')
-		ifstring(arg_count);
+		isstring(arg_count);
 	else if (character == 'p')
-		ifpointer(arg_count);
+		ispointer(arg_count);
 	else if (character == 'i' || character == 'd')
-		ifint(arg_count);
+		isint(arg_count);
 	else if (character == 'u')
-		ifunsignedint(arg_count);
+		isunsignedint(arg_count);
 	else if (character == 'x' || character == 'X')
-		ifhex(arg_count, character);
+		ishex(arg_count, character);
 	else if (character == '%')
 	{
 		ft_putchar_fd('%', 1);

@@ -24,12 +24,12 @@ typedef struct s_print
 	int		counter;
 }	t_print;
 
-void	ifcharacter(t_print *arg_count);
-void	ifstring(t_print *arg_count);
-void	ifpointer(t_print *arg_count);
-void	ifhex(t_print *arg_count, char character);
-void	ifint(t_print *arg_count);
-void	ifunsignedint(t_print *arg_count);
+void	ischaracter(t_print *arg_count);
+void	isstring(t_print *arg_count);
+void	ispointer(t_print *arg_count);
+void	ishex(t_print *arg_count, char character);
+void	isint(t_print *arg_count);
+void	isunsignedint(t_print *arg_count);
 int		ft_printf(const char *string, ...);
 
 #endif

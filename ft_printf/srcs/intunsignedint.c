@@ -43,7 +43,7 @@ static char	*itoa(unsigned int number)
 	return (string);
 }
 
-void	ifint(t_print *arg_count)
+void	isint(t_print *arg_count)
 {
 	char	*string;
 	int		result;
@@ -55,7 +55,7 @@ void	ifint(t_print *arg_count)
 	free(string);
 }
 
-void	ifunsignedint(t_print *arg_count)
+void	isunsignedint(t_print *arg_count)
 {
 	char			*string;
 	unsigned int	result;

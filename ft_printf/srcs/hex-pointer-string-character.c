@@ -28,7 +28,7 @@ static char	*numberlength(unsigned long number, int *length)
 	return (string);
 }
 
-void	ifhex(t_print *arg_count, char character)
+void	ishex(t_print *arg_count, char character)
 {
 	unsigned int	number;
 	int				length;
@@ -54,7 +54,7 @@ void	ifhex(t_print *arg_count, char character)
 	free(string);
 }
 
-void	ifpointer(t_print *arg_count)
+void	ispointer(t_print *arg_count)
 {
 	int				length;
 	char			*string;
@@ -80,13 +80,13 @@ void	ifpointer(t_print *arg_count)
 	free(string);
 }
 
-void	ifcharacter(t_print *arg_count)
+void	ischaracter(t_print *arg_count)
 {
 	ft_putchar_fd(va_arg(arg_count->args, int), 1);
 	arg_count->counter++;
 }
 
-void	ifstring(t_print *arg_count)
+void	isstring(t_print *arg_count)
 {
 	char	*string;
 	int		length;
