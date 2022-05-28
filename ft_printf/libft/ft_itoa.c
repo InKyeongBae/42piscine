@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/libft.h"
 
 static unsigned int	ft_numsize(int n)
 {
